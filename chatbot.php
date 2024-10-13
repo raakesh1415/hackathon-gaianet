@@ -1,194 +1,216 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Legal Assistant Chatbot</title>
+  <title>Legal Assistant</title>
+  <link rel="icon" href="logo.png" type="image/x-icon" />
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://kit.fontawesome.com/fab8eeb652.js" crossorigin="anonymous"></script>
   <style>
     body {
       background-color: #00082f;
-      color: white;
       height: 100vh;
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
-    .chatbot-container {
       display: flex;
-      height: 100%;
-    }
-    /* Sidebar */
-    .sidebar {
-      width: 250px;
-      background-color: #001f54;
-      padding: 15px;
-      border-right: 1px solid #4f4f4f;
-    }
-    .sidebar h5 {
-      color: white;
-    }
-    .sidebar ul {
-      padding-left: 0;
-      list-style: none;
-    }
-    .sidebar ul li {
-      margin-bottom: 15px;
-    }
-    .sidebar ul li a {
-      text-decoration: none;
-      color: #a5c9ff;
-      display: block;
-      padding: 10px;
-      border-radius: 5px;
-      background-color: #001f54;
-    }
-    .sidebar ul li a:hover {
-      background-color: #3d7ff5;
-    }
-    .new-chat-btn {
-      background-color: #3d7ff5;
-      color: white;
-      border-radius: 5px;
-      padding: 10px;
-      text-align: center;
-      margin-top: 20px;
-    }
-    /* Main chat area */
-    .main-chat {
-      flex-grow: 1;
-      padding: 30px;
-    }
-    .main-chat .header {
-      display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-    }
-    .main-chat .header h1 {
-      color: #ffffff;
-    }
-    .main-chat .header img {
-      width: 50px;
-    }
-    /* Examples, Capabilities, Limitations section */
-    .examples,
-    .capabilities,
-    .limitations {
-      margin-top: 50px;
-    }
-    .card {
-      background-color: #001f54;
-      color: white;
-      padding: 15px;
-      border-radius: 10px;
-      border: none;
-    }
-    .card p {
       margin: 0;
     }
-    .search-bar {
-      display: flex;
-      align-items: center;
-      margin-top: 50px;
+    .text-light {
+      color: #9ca2ad !important;
     }
-    .search-bar input {
-      flex-grow: 1;
-      padding: 10px;
-      border-radius: 20px;
-      border: none;
-      margin-right: 10px;
+    .logo {
+      max-width: 250px;
     }
-    .search-bar button {
-      background-color: #3d7ff5;
+    .legal_logo {
+      position: absolute;
+      top: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .welcome {
+      position: absolute;
+      top: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .ex {
       color: white;
-      border: none;
-      padding: 10px;
+    }
+    /* Icon styles */
+    .icon-bg {
+      background-color: #1E90FF; /* DodgerBlue */
+      padding: 15px;
       border-radius: 50%;
+      display: inline-block;
+      margin-bottom: 10px;
     }
+    .fa-icon {
+      font-size: 2.0rem; /* Adjust this for bigger icons */
+      color: white;
+    }
+    /* Customized text box */
+    .custom-box {
+      background-color: #262c45; /* Grey background */
+      color: white;              /* White text */
+      padding: 10px;             /* Padding inside the box */
+      border-radius: 10px;       /* Rounded corners */
+      margin-top: 20px;          /* Add some margin on top */
+    }
+    /* Search bar styles */
+    .search-container {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-color: #00082f;
+        padding: 20px 0;
+        display: flex;
+        justify-content: center;  /* Center horizontally */
+    }
+
+    .search-bar {
+        display: flex;
+        align-items: center;
+    }
+
+    .search-input {
+        background-color: #2f3146;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 30px;
+        width: 400px;
+        color: #9ca2ad;
+        font-size: 1rem;
+        outline: none;
+    }
+
+    .search-input::placeholder {
+        color: #9ca2ad;
+    }
+
+    .search-btn {
+        background-color: #1E90FF;
+        border: none;
+        padding: 10px;
+        margin-left: -50px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    .search-btn i {
+        color: white;
+    }
+
   </style>
 </head>
 <body>
-
-  <div class="chatbot-container">
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <div class="user-info d-flex align-items-center mb-4">
-        <img src="user-profile.png" alt="User Avatar" class="img-fluid rounded-circle me-2" width="50">
-        <div>
-          <h5>User</h5>
-          <p>user@gmail.com</p>
+  <div class="container">
+    <!-- Grid Structure for Logo and Form -->
+    <div class="row">
+      <!-- Logo Section -->
+      <div class="col-12 d-flex justify-content-center">
+        <div class="legal_logo">
+          <img src="Screenshot_2024-10-13_121447-removebg-preview.png" alt="Legal Assistant Logo" class="logo img-fluid">
         </div>
-      </div>
-
-      <ul class="recent-chats">
-        <li><a href="#">Previous Chat</a></li>
-        <li><a href="#">Previous Chat</a></li>
-        <li><a href="#">Previous Chat</a></li>
-        <li><a href="#">Previous Chat</a></li>
-        <li><a href="#">Previous Chat</a></li>
-        <li><a href="#">Previous Chat</a></li>
-        <li><a href="#">Previous Chat</a></li>
-      </ul>
-
-      <div class="new-chat-btn">
-        <a href="#" class="text-white">+ New Chat</a>
       </div>
     </div>
 
-    <!-- Main Chat Area -->
-    <div class="main-chat">
-      <div class="header d-flex justify-content-between align-items-center">
-        <h1>Welcome to Legal Assistant</h1>
-        <img src="logo.png" alt="Legal Assistant Logo">
-      </div>
-
-      <div class="examples mt-4">
-        <h4>Examples</h4>
-        <div class="card mb-3">
-          <p>"Explain quantum computing in simple terms"</p>
-        </div>
-        <div class="card mb-3">
-          <p>"Got any creative ideas for a 10-year-old's birthday?"</p>
-        </div>
-        <div class="card mb-3">
-          <p>"How do I make an HTTP request in JavaScript?"</p>
+    <div class="row">
+      <!-- Logo Section -->
+      <div class="col-12 d-flex justify-content-center">
+        <div class="welcome">
+          <h1 class="text-white">Welcome to Legal Assistant</h1>
         </div>
       </div>
-
-      <div class="capabilities mt-4">
-        <h4>Capabilities</h4>
-        <div class="card mb-3">
-          <p>Remembers what user said earlier in the conversation</p>
-        </div>
-        <div class="card mb-3">
-          <p>Allows user to provide follow-up corrections</p>
-        </div>
-        <div class="card mb-3">
-          <p>"How do I make an HTTP request in JavaScript?"</p>
-        </div>
-      </div>
-
-      <div class="limitations mt-4">
-        <h4>Limitations</h4>
-        <div class="card mb-3">
-          <p>May occasionally generate incorrect information</p>
-        </div>
-        <div class="card mb-3">
-          <p>May occasionally produce harmful instructions or biased content</p>
-        </div>
-        <div class="card mb-3">
-          <p>Limited knowledge of world and events after 2021</p>
-        </div>
-      </div>
-
-      <!-- Search bar -->
-      <div class="search-bar mt-4">
-        <input type="text" placeholder="Search for anything...">
-        <button><i class="bi bi-search"></i></button>
-      </div>
-
     </div>
+
+    <!-- Registration Form Section -->
+    <div class="row d-flex justify-content-center">
+      <div class="col-4 text-center ex raised">
+        <span class="icon-bg">
+          <i class="fa-regular fa-lightbulb fa-icon"></i>
+        </span>
+        <h3>Examples</h3>
+      </div>
+      <div class="col-4 text-center cap ex raised">
+        <span class="icon-bg">
+          <i class="fa-solid fa-bolt fa-icon"></i>
+        </span>
+        <h3>Capabilities</h3>
+      </div>
+      <div class="col-4 text-center ex raised">
+        <span class="icon-bg">
+          <i class="fa-solid fa-triangle-exclamation fa-icon"></i>
+        </span>
+        <h3>Limitations</h3>
+      </div>
+    </div>
+
+    <!-- Example text with customized background and text color -->
+    <div class="row d-flex justify-content-center">
+      <div class="col-4 text-center">
+        <div class="custom-box">
+          <h5>"Explain about the laws in Malaysia in simple terms"</h5>
+        </div>
+      </div>
+      <div class="col-4 text-center">
+        <div class="custom-box">
+          <h5>"Explain about the laws in Malaysia in simple terms"</h5>
+        </div>
+      </div>
+      <div class="col-4 text-center">
+        <div class="custom-box">
+          <h5>"Explain about the laws in Malaysia in simple terms"</h5>
+        </div>
+      </div>
+    </div>
+
+    <!-- Example text with customized background and text color -->
+    <div class="row d-flex justify-content-center">
+      <div class="col-4 text-center">
+        <div class="custom-box">
+          <h5>"Explain about the laws in Malaysia in simple terms"</h5>
+        </div>
+      </div>
+      <div class="col-4 text-center">
+        <div class="custom-box">
+          <h5>"Explain about the laws in Malaysia in simple terms"</h5>
+        </div>
+      </div>
+      <div class="col-4 text-center">
+        <div class="custom-box">
+          <h5>"Explain about the laws in Malaysia in simple terms"</h5>
+        </div>
+      </div>
+    </div>
+
+    <!-- Example text with customized background and text color -->
+    <div class="row d-flex justify-content-center">
+      <div class="col-4 text-center">
+        <div class="custom-box">
+          <h5>"Explain about the laws in Malaysia in simple terms"</h5>
+        </div>
+      </div>
+      <div class="col-4 text-center">
+        <div class="custom-box">
+          <h5>"Explain about the laws in Malaysia in simple terms"</h5>
+        </div>
+      </div>
+      <div class="col-4 text-center">
+        <div class="custom-box">
+          <h5>"Explain about the laws in Malaysia in simple terms"</h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="row search-container">
+        <div class="col-12 search-bar">
+            <input type="text" class="search-input" placeholder="search for anything">
+            <button class="search-btn"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+    </div>
+
   </div>
-
 </body>
 </html>
