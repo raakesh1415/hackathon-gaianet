@@ -1,3 +1,7 @@
+<?php
+  ob_start(); // Start output buffering
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -138,46 +142,62 @@
  
 <?php
 
-    require_once('config.php');
 
-    if(isset($_POST['user']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['cpassword'])) {
-    
-      // Sanitize and validate user inputs
-      $user = htmlspecialchars(trim($_POST['user']));
-      $email = filter_var(trim($_POST['email']), FILTER_VALIDATE_EMAIL);
-      $pass = $_POST['password'];
-      $cpass = $_POST['cpassword'];
-      
-      // Check if passwords match
-      if ($pass !== $cpass) {
-        echo "Passwords do not match!";
-        exit();
-      }
-  
-      // Hash the password securely
-      $hashPass = password_hash($pass, PASSWORD_DEFAULT);
-  
-      // Prepare the SQL query
-      $stmt = $mysqli->prepare("INSERT INTO users (user, email, pass) VALUES (?, ?, ?)");
-  
-      if ($stmt) {
-        // Bind parameters and execute the statement
-        $stmt->bind_param("sss", $user, $email, $hashPass);
-  
-        // Execute and check for errors
-        if (!$stmt->execute()) {
-          echo "Error: " . $stmt->error;
-        }
-        
-        // Close the statement
-        $stmt->close();
-      } else {
-        echo "Error preparing the statement: " . $mysqli->error;
-      }
+require_once('config.php');
+
+// Check if form is submitted
+if(isset($_POST['user']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['cpassword'])) {
+
+  // Sanitize and validate user inputs
+  $user = htmlspecialchars(trim($_POST['user']));
+  $email = filter_var(trim($_POST['email']), FILTER_VALIDATE_EMAIL);
+  $pass = $_POST['password'];
+  $cpass = $_POST['cpassword'];
+
+  // Check if email is valid
+  if (!$email) {
+    echo "<div class='alert alert-danger'>Invalid email address!</div>";
+    exit();
+  }
+
+  // Check if passwords match
+  if ($pass !== $cpass) {
+    echo "<div class='alert alert-danger'>Passwords do not match!</div>";
+    exit();
+  }
+
+  // Hash the password securely
+  $hashPass = password_hash($pass, PASSWORD_DEFAULT);
+
+  // Prepare the SQL query
+  $stmt = $mysqli->prepare("INSERT INTO users (user, email, pass) VALUES (?, ?, ?)");
+
+  if ($stmt) {
+    // Bind parameters and execute the statement
+    $stmt->bind_param("sss", $user, $email, $hashPass);
+
+    // Execute and check for errors
+    if (!$stmt->execute()) {
+      echo "<div class='alert alert-danger'>Error: " . $stmt->error . "</div>";
+    } else {
+      // Registration successful, redirect to login
+      $stmt->close();
+      $mysqli->close();
+      header("Location: login.php");
+      exit(); // Important to stop further script execution after redirect
     }
-  
-    // Close the database connection
-    $mysqli->close();
+  } else {
+    echo "<div class='alert alert-danger'>Error preparing the statement: " . $mysqli->error . "</div>";
+  }
 
+  // Close the statement and connection in case of error
+  if ($stmt) {
+    $stmt->close();
+  }
+  $mysqli->close();
+}
 
+ob_end_flush(); 
 ?>
+
+
