@@ -1,3 +1,7 @@
+<?php
+  ob_start(); // Start output buffering
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -101,8 +105,6 @@
       </div>
     </div>
 
-   
-
     <!-- Registration Form Section -->
     <div class="row">
       <div class="col-12 d-flex justify-content-center">
@@ -127,3 +129,55 @@
   </div>
 </body>
 </html>
+
+<?php
+
+require_once('config.php');
+
+// Check if form is submitted
+if(isset($_POST['email']) && isset($_POST['password'])) {
+
+  // Sanitize and validate user inputs
+  $email = filter_var(trim($_POST['email']), FILTER_VALIDATE_EMAIL);
+  $pass = $_POST['password'];
+
+  // Check if email is valid
+  if (!$email) {
+    echo "<div class='alert alert-danger'>Invalid email address!</div>";
+    exit();
+  }
+
+  // Prepare the SQL query
+  $stmt = $mysqli->prepare("SELECT pass FROM users WHERE email=?");
+
+  if ($stmt) {
+    // Bind parameters and execute the statement
+    $stmt->bind_param("s", $email);
+
+    // Execute and check for errors
+    if ($stmt->execute()) {
+      $result = $stmt->get_result();
+
+      if($result->num_rows == 1){
+        $row = $result->fetch_assoc();
+        $hashed_pass = $row['pass'];
+
+        if(password_verify($pass,$hashed_pass))
+        {
+          // Ensure no output is sent before this
+          $stmt->close();
+          $mysqli->close();
+          
+          // Redirect after successful login
+          header("Location: chatbot.php");
+          exit(); // Stop further script execution after redirect
+        } else {
+          echo "<div class='alert alert-danger'>Incorrect password!</div>";
+        }
+      } else {
+        echo "<div class='alert alert-danger'>No account found with that email!</div>";
+      }
+    }
+  }
+}
+ob_end_flush();
