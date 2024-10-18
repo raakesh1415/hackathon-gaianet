@@ -8,7 +8,7 @@ app.use(express.json()); // For parsing JSON data
 app.use(cors()); // Add this line
 
 const client = new OpenAI({
-  baseURL: 'https://0xf0ea2d714dd659e2999ebf1570aab5781c3ec3b9.us.gaianet.network/v1',
+  baseURL: 'https://0x828b041a0259839e75606155977b84d87fcaa12d.us.gaianet.network/v1',
   apiKey: 'gaia' // Leave this empty when using GaiaNet
 });
 
