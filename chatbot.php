@@ -75,6 +75,23 @@
       /* Add some margin on top */
     }
 
+  .answer-container {
+    background-color:#2f3146; /* White background */
+    padding: 20px;           /* Add some padding */
+    border-radius: 15px;     /* Curved corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Adds a slight shadow for depth */
+    margin: 20px auto;       /* Center the container */
+    max-width: 1000px;        /* Limit the width */
+    text-align: center;      /* Center the content */
+  }
+
+  #answer {
+    color: white;             /* Text color for the answer */
+    font-size: 18px;         /* Adjust font size */
+  }
+
+
+
     /* Search bar styles */
 
 
@@ -152,7 +169,7 @@
       <!-- Logo Section -->
       <div class="col-12 d-flex justify-content-center">
         <div class="welcome">
-          <h1 class="text-white">Welcome to Legal Assistant</h1>
+          <h1 class="m-10 text-white">Welcome to Legal Assistant</h1>
         </div>
       </div>
     </div>
@@ -217,7 +234,7 @@
       </div>
     </div>
 
-    <!-- Example text with customized background and text color -->
+    <!-- Example text with customized background and text color
     <div class="row d-flex justify-content-center">
       <div class="col-4 text-center">
         <div class="custom-box">
@@ -234,13 +251,21 @@
           <h5>"Explain about the laws in Malaysia in simple terms"</h5>
         </div>
       </div>
+    </div> -->
+
+    <div class="answer-container">
+      <h2 class="text-white">Answer</h2>
+      <p id="answer">Waiting for answer...</p>
     </div>
 
-    <div class="row search-container" style=" width: 100%; background-color: #00082f;">
+
+    <div class="row search-container" style="width: 100%; background-color: #00082f;">
       <div class="col-12 justify-content-center">
         <div class="search-bar">
-          <input type="text" class="search-input" placeholder="search for anything">
-          <button class="search-btn"><i class="fa-solid fa-paper-plane"></i></button>
+          <input type="text" id="question" class="search-input" placeholder="search for anything">
+          <button type="submit" class="search-btn" id="submitQuestion">
+            <i class="fa-solid fa-paper-plane"></i>
+          </button>
         </div>
       </div>
     </div>
@@ -249,3 +274,38 @@
 </body>
 
 </html>
+
+
+<script>
+  document.getElementById('submitQuestion').addEventListener('click', async function(event) {
+    event.preventDefault(); // Prevent form reload (if wrapped in a form tag)
+    const question = document.getElementById('question').value;
+
+    if (!question) {
+      document.getElementById('answer').textContent = 'Please enter a question.';
+      return; // Exit if there's no question
+    }
+
+    try {
+      const response = await fetch('http://localhost:4000/ask', { // Use full URL with host and port
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          question: question
+        }) // Send the question to the backend
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch the answer');
+      }
+
+      const result = await response.json(); // Parse the JSON response from the backend
+      document.getElementById('answer').textContent = result.answer || 'No answer available'; // Display the answer
+    } catch (error) {
+      console.error('Error fetching answer:', error);
+      document.getElementById('answer').textContent = 'Error fetching answer: ' + error.message;
+    }
+  });
+</script>
