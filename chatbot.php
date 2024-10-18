@@ -133,6 +133,22 @@
     .search-btn i {
       color: white;
     }
+
+    .answer-container {
+      background-color: #262c45;
+      padding: 20px;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 600px;
+      color: white;
+      margin: 20px auto;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #answer {
+      text-align: center;
+      font-size: 1.2rem;
+    }
   </style>
 </head>
 
@@ -239,13 +255,53 @@
     <div class="row search-container" style=" width: 100%; background-color: #00082f;">
       <div class="col-12 justify-content-center">
         <div class="search-bar">
-          <input type="text" class="search-input" placeholder="search for anything">
-          <button class="search-btn"><i class="fa-solid fa-paper-plane"></i></button>
+          <input type="text" class="search-input" id="question" placeholder="search for anything">
+          <button class="search-btn" type="submit" id="submitBtn"><i class="fa-solid fa-paper-plane"></i></button>
         </div>
       </div>
     </div>
 
+    <!-- Answer Section -->
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <div id="answer" class="answer-container">
+          <h5>Your answer will appear here...</h5>
+        </div>
+      </div>
+    </div>
+
+
+
   </div>
 </body>
+
+<script>
+
+document.getElementById('submitBtn').addEventListener('click', async function(event) {
+  event.preventDefault(); // Prevent page reload
+  const question = document.getElementById('question').value; // Get the question from the input
+
+  try {
+    const response = await fetch('http://localhost:4000/ask', { // Sending the request to Node.js
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ question: question }) // Send question to the server
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch the answer');
+    }
+
+    const result = await response.json(); // Parse the JSON response from the server
+    document.getElementById('answer').textContent = result.answer; // Display the answer
+  } catch (error) {
+    console.error('Error fetching answer:', error);
+    document.getElementById('answer').textContent = 'Error fetching answer: ' + error.message;
+  }
+});
+
+</script>
 
 </html>
