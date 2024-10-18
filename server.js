@@ -17,7 +17,7 @@ async function callOpenAI(question) {
     const response = await client.chat.completions.create({
       model: "llama-3.2-3B-Instruct-Q5_K_M",
       messages: [
-        { role: "system", content: "You are a mathematician." },
+        { role: "system", content: "You are a legal assistant. Please provide accurate and relevant legal assistance to the user." },
         { role: "user", content: question }
       ],
       temperature: 0.7,
