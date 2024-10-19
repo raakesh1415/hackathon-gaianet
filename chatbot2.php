@@ -80,6 +80,7 @@
       display: flex;
       justify-content: center;
       z-index: 1000;
+      left:2px;
     }
 
     .search-input {
