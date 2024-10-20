@@ -75,20 +75,44 @@
       /* Add some margin on top */
     }
 
-  .answer-container {
-    background-color:#2f3146; /* White background */
-    padding: 20px;           /* Add some padding */
-    border-radius: 15px;     /* Curved corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Adds a slight shadow for depth */
-    margin: 20px auto;       /* Center the container */
-    max-width: 1000px;        /* Limit the width */
-    text-align: center;      /* Center the content */
-  }
+    .conversation-container {
+      max-width: 1000px;
+      width: 100%;
+      margin: 20px auto;
+      margin-top: -50px;
+      display: flex;
+      flex-direction: column;
+    }
 
-  #answer {
-    color: white;             /* Text color for the answer */
-    font-size: 18px;         /* Adjust font size */
-  }
+    .question-box,
+    .answer-box {
+      background-color: #262c45;
+      padding: 15px;
+      border-radius: 15px;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+      margin: 10px 0;
+      color: #fff;
+      max-width: 600px;
+      display: inline-block;
+      word-wrap: break-word;
+    }
+
+    .question-box {
+      align-self: flex-end;
+      margin-left: auto;
+      background-color: #1E90FF;
+      color: white;
+    }
+
+    .answer-box {
+      align-self: flex-start;
+      margin-right: auto;
+    }
+
+    .question-box p,
+    .answer-box p {
+      margin: 0;
+    }
 
 
 
@@ -151,10 +175,10 @@
       color: white;
     }
 
-    .answer-container {
+    /* .answer-container {
       background-color: #262c45;
       padding: 20px;
-      border-radius: 10px;
+      border-radius: 10px;4+
       width: 100%;
       max-width: 600px;
       color: white;
@@ -165,7 +189,7 @@
     #answer {
       text-align: center;
       font-size: 1.2rem;
-    }
+    } */
   </style>
 </head>
 
@@ -189,89 +213,94 @@
         </div>
       </div>
     </div>
+    <div class="Temporary" id="Temp">
+      <!-- Registration Form Section -->
+      <div class="row d-flex justify-content-center">
+        <div class="col-4 text-center ex raised">
+          <span class="icon-bg">
+            <i class="fa-regular fa-lightbulb fa-icon"></i>
+          </span>
+          <h3>Examples</h3>
+        </div>
+        <div class="col-4 text-center cap ex raised">
+          <span class="icon-bg">
+            <i class="fa-solid fa-bolt fa-icon"></i>
+          </span>
+          <h3>Capabilities</h3>
+        </div>
+        <div class="col-4 text-center ex raised">
+          <span class="icon-bg">
+            <i class="fa-solid fa-triangle-exclamation fa-icon"></i>
+          </span>
+          <h3>Limitations</h3>
+        </div>
+      </div>
 
-    <!-- Registration Form Section -->
-    <div class="row d-flex justify-content-center">
-      <div class="col-4 text-center ex raised">
-        <span class="icon-bg">
-          <i class="fa-regular fa-lightbulb fa-icon"></i>
-        </span>
-        <h3>Examples</h3>
+      <!-- Example text with customized background and text color -->
+      <div class="row d-flex justify-content-center">
+        <div class="col-4 text-center">
+          <div class="custom-box">
+            <h5>"Explain about the laws in Malaysia in simple terms"</h5>
+          </div>
+        </div>
+        <div class="col-4 text-center">
+          <div class="custom-box">
+            <h5>"Explain about the laws in Malaysia in simple terms"</h5>
+          </div>
+        </div>
+        <div class="col-4 text-center">
+          <div class="custom-box">
+            <h5>"Explain about the laws in Malaysia in simple terms"</h5>
+          </div>
+        </div>
       </div>
-      <div class="col-4 text-center cap ex raised">
-        <span class="icon-bg">
-          <i class="fa-solid fa-bolt fa-icon"></i>
-        </span>
-        <h3>Capabilities</h3>
+
+      <!-- Example text with customized background and text color -->
+      <div class="row d-flex justify-content-center">
+        <div class="col-4 text-center">
+          <div class="custom-box">
+            <h5>"Explain about the laws in Malaysia in simple terms"</h5>
+          </div>
+        </div>
+        <div class="col-4 text-center">
+          <div class="custom-box">
+            <h5>"Explain about the laws in Malaysia in simple terms"</h5>
+          </div>
+        </div>
+        <div class="col-4 text-center">
+          <div class="custom-box">
+            <h5>"Explain about the laws in Malaysia in simple terms"</h5>
+          </div>
+        </div>
       </div>
-      <div class="col-4 text-center ex raised">
-        <span class="icon-bg">
-          <i class="fa-solid fa-triangle-exclamation fa-icon"></i>
-        </span>
-        <h3>Limitations</h3>
+
+      Example text with customized background and text color
+      <div class="row d-flex justify-content-center">
+        <div class="col-4 text-center">
+          <div class="custom-box">
+            <h5>"Explain about the laws in Malaysia in simple terms"</h5>
+          </div>
+        </div>
+        <div class="col-4 text-center">
+          <div class="custom-box">
+            <h5>"Explain about the laws in Malaysia in simple terms"</h5>
+          </div>
+        </div>
+        <div class="col-4 text-center">
+          <div class="custom-box">
+            <h5>"Explain about the laws in Malaysia in simple terms"</h5>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- Example text with customized background and text color -->
-    <div class="row d-flex justify-content-center">
-      <div class="col-4 text-center">
-        <div class="custom-box">
-          <h5>"Explain about the laws in Malaysia in simple terms"</h5>
-        </div>
-      </div>
-      <div class="col-4 text-center">
-        <div class="custom-box">
-          <h5>"Explain about the laws in Malaysia in simple terms"</h5>
-        </div>
-      </div>
-      <div class="col-4 text-center">
-        <div class="custom-box">
-          <h5>"Explain about the laws in Malaysia in simple terms"</h5>
-        </div>
-      </div>
-    </div>
-
-    <!-- Example text with customized background and text color -->
-    <div class="row d-flex justify-content-center">
-      <div class="col-4 text-center">
-        <div class="custom-box">
-          <h5>"Explain about the laws in Malaysia in simple terms"</h5>
-        </div>
-      </div>
-      <div class="col-4 text-center">
-        <div class="custom-box">
-          <h5>"Explain about the laws in Malaysia in simple terms"</h5>
-        </div>
-      </div>
-      <div class="col-4 text-center">
-        <div class="custom-box">
-          <h5>"Explain about the laws in Malaysia in simple terms"</h5>
-        </div>
-      </div>
-    </div>
-
-    <!-- Example text with customized background and text color
-    <div class="row d-flex justify-content-center">
-      <div class="col-4 text-center">
-        <div class="custom-box">
-          <h5>"Explain about the laws in Malaysia in simple terms"</h5>
-        </div>
-      </div>
-      <div class="col-4 text-center">
-        <div class="custom-box">
-          <h5>"Explain about the laws in Malaysia in simple terms"</h5>
-        </div>
-      </div>
-      <div class="col-4 text-center">
-        <div class="custom-box">
-          <h5>"Explain about the laws in Malaysia in simple terms"</h5>
-        </div>
-      </div>
-    </div> -->
-
-    <div class="answer-container">
+    <!-- <div class="answer-container">
       <h2 class="text-white">Answer</h2>
       <p id="answer">Waiting for answer...</p>
+    </div> -->
+
+    <div class="conversation-container" id="conversationContainer">
+      <!-- Questions and Answers will be appended here -->
     </div>
 
 
@@ -291,68 +320,106 @@
   </div>
 </body>
 
-<script>
-
-document.getElementById('submitBtn').addEventListener('click', async function(event) {
-  event.preventDefault(); // Prevent page reload
-  const question = document.getElementById('question').value; // Get the question from the input
-
-  try {
-    const response = await fetch('http://localhost:4000/ask', { // Sending the request to Node.js
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ question: question }) // Send question to the server
-    });
-
-    if (!response.ok) {
-      throw new Error('Failed to fetch the answer');
-    }
-
-    const result = await response.json(); // Parse the JSON response from the server
-    document.getElementById('answer').textContent = result.answer; // Display the answer
-  } catch (error) {
-    console.error('Error fetching answer:', error);
-    document.getElementById('answer').textContent = 'Error fetching answer: ' + error.message;
-  }
-});
-
-</script>
-
-</html>
-
-
-<script>
-  document.getElementById('submitQuestion').addEventListener('click', async function(event) {
-    event.preventDefault(); // Prevent form reload (if wrapped in a form tag)
-    const question = document.getElementById('question').value;
-
-    if (!question) {
-      document.getElementById('answer').textContent = 'Please enter a question.';
-      return; // Exit if there's no question
-    }
+<!-- <script>
+  document.getElementById('submitBtn').addEventListener('click', async function(event) {
+    event.preventDefault(); // Prevent page reload
+    const question = document.getElementById('question').value; // Get the question from the input
 
     try {
-      const response = await fetch('http://localhost:4000/ask', { // Use full URL with host and port
+      const response = await fetch('http://localhost:4000/ask', { // Sending the request to Node.js
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           question: question
-        }) // Send the question to the backend
+        }) // Send question to the server
       });
 
       if (!response.ok) {
         throw new Error('Failed to fetch the answer');
       }
 
-      const result = await response.json(); // Parse the JSON response from the backend
-      document.getElementById('answer').textContent = result.answer || 'No answer available'; // Display the answer
+      const result = await response.json(); // Parse the JSON response from the server
+      document.getElementById('answer').textContent = result.answer; // Display the answer
     } catch (error) {
       console.error('Error fetching answer:', error);
       document.getElementById('answer').textContent = 'Error fetching answer: ' + error.message;
     }
   });
 </script>
+ -->
+
+</html>
+
+
+<script>
+  document.getElementById('submitQuestion').addEventListener('click', async function(event) {
+
+    const disappearElements = document.querySelectorAll('.Temporary'); // Ensure matching class
+    // Loop through each element and hide it
+    disappearElements.forEach(function(element) {
+      element.style.display = 'none'; // Hide the element
+    });
+
+    event.preventDefault(); // Prevent page reload
+    const question = document.getElementById('question').value.trim(); // Get the question from the input
+
+    if (!question) {
+      alert('Please type a question'); // Alert if input is empty
+      return;
+    }
+
+    const conversationContainer = document.getElementById('conversationContainer');
+
+    // Create new question box element
+    const questionBox = document.createElement('div');
+    questionBox.className = 'question-box';
+    const questionText = document.createElement('p');
+    questionText.textContent = question;
+    questionBox.appendChild(questionText);
+    conversationContainer.appendChild(questionBox); // Append question to conversation container
+
+    // Clear input after submission
+    document.getElementById('question').value = '';
+
+    try {
+      const response = await fetch('http://localhost:4000/ask', { // Sending the request to Node.js
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          question: question
+        }) // Send question to the server
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch the answer');
+      }
+
+      const result = await response.json(); // Parse the JSON response from the server
+
+      // Create new answer box element
+      const answerBox = document.createElement('div');
+      answerBox.className = 'answer-box';
+      const answerText = document.createElement('p');
+      answerText.textContent = result.answer;
+      answerBox.appendChild(answerText);
+      conversationContainer.appendChild(answerBox); // Append answer to conversation container
+    } catch (error) {
+      console.error('Error fetching answer:', error);
+
+      // Display error in the answer box
+      const answerBox = document.createElement('div');
+      answerBox.className = 'answer-box';
+      const answerText = document.createElement('p');
+      answerText.textContent = 'Error fetching answer: ' + error.message;
+      answerBox.appendChild(answerText);
+      conversationContainer.appendChild(answerBox); // Append error answer to conversation container
+    }
+  });
+</script>
+</body>
+
+</html>

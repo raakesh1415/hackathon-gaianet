@@ -80,7 +80,7 @@
       display: flex;
       justify-content: center;
       z-index: 1000;
-      left:2px;
+      left: 2px;
     }
 
     .search-input {
@@ -88,7 +88,8 @@
       border: none;
       padding: 10px 15px;
       border-radius: 30px;
-      width: 600px; /* Increased the width */
+      width: 600px;
+      /* Increased the width */
       color: #9ca2ad;
       font-size: 1rem;
       outline: none;
@@ -101,10 +102,12 @@
     .search-btn {
       background-color: #1E90FF;
       border: none;
-      padding: 10px 20px; /* Added padding for better spacing */
+      padding: 10px 20px;
+      /* Added padding for better spacing */
       border-radius: 50px;
       cursor: pointer;
-      margin-left: 10px; /* Added margin for spacing */
+      margin-left: 10px;
+      /* Added margin for spacing */
     }
 
     .search-btn i {
@@ -140,6 +143,7 @@
 
   <script>
     document.getElementById('submitBtn').addEventListener('click', async function(event) {
+
       event.preventDefault(); // Prevent page reload
       const question = document.getElementById('question').value.trim(); // Get the question from the input
 
@@ -167,7 +171,9 @@
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ question: question }) // Send question to the server
+          body: JSON.stringify({
+            question: question
+          }) // Send question to the server
         });
 
         if (!response.ok) {
