@@ -76,12 +76,15 @@
     }
 
     .conversation-container {
+      max-height: 500px; /* Set the maximum height */
+      overflow-y: auto;
       max-width: 1000px;
       width: 100%;
       margin: 20px auto;
       margin-top: -50px;
       display: flex;
       flex-direction: column;
+      scroll-snap-type: y mandatory;
     }
 
     .question-box,
@@ -102,11 +105,13 @@
       margin-left: auto;
       background-color: #1E90FF;
       color: white;
+      scroll-snap-align: end;
     }
 
     .answer-box {
       align-self: flex-start;
       margin-right: auto;
+      scroll-snap-align: end;
     }
 
     .question-box p,
@@ -165,8 +170,8 @@
     .search-btn {
       background-color: #1E90FF;
       border: none;
-      padding: 10px;
-      margin-left: -50px;
+      padding: 8px;
+      /* margin-left: -50px; */
       border-radius: 50%;
       cursor: pointer;
     }
@@ -205,6 +210,7 @@
       </div>
     </div>
 
+    <div class="Temporary" id="Temp">
     <div class="row">
       <!-- Logo Section -->
       <div class="col-12 d-flex justify-content-center">
@@ -213,7 +219,6 @@
         </div>
       </div>
     </div>
-    <div class="Temporary" id="Temp">
       <!-- Registration Form Section -->
       <div class="row d-flex justify-content-center">
         <div class="col-4 text-center ex raised">
