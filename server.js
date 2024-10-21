@@ -1,31 +1,31 @@
 const express = require('express');
-const cors = require('cors'); // Add this line
-const OpenAI = require('openai');
+const cors = require('cors');
+const OpenAI = require('openai'); // Make sure you're using the correct OpenAI library or GaiaNet's specific client SDK
 
 const app = express();
-app.use(express.json()); // For parsing JSON data
-
-app.use(cors()); // Add this line
+app.use(express.json());
+app.use(cors());
 
 const client = new OpenAI({
-  baseURL: 'https://0x828b041a0259839e75606155977b84d87fcaa12d.us.gaianet.network/v1',
-  apiKey: 'gaia' // Leave this empty when using GaiaNet
+  baseURL: 'https://pastor.gaianet.network/v1',  // Update to the GaiaNet node's base URL
+  apiKey: 'gaia'  // GaiaNet doesn't need an API key, you can leave it blank if the system allows.
 });
 
-async function callOpenAI(question) {
+// Function to call the GaiaNet node
+async function callGaiaNet(question) {
   try {
     const response = await client.chat.completions.create({
-      model: "llama-3.2-3B-Instruct-Q5_K_M",
+      model: "Llama-3-8B-Instruct",  // Update to the correct model
       messages: [
-        { role: "system", content: "You are a Mathematician." },
+        { role: "system", content: "You are a legal assistant. Please provide accurate and relevant legal assistance to the user." },
         { role: "user", content: question }
       ],
-      temperature: 0.7,
-      max_tokens: 100
+      temperature: 0.7,  // Adjust temperature if needed for variability
+      max_tokens: 100  // Adjust token limit as necessary
     });
-    return response.choices[0].message.content; // Return the answer
+    return response.choices[0].message.content;  // Return the generated response
   } catch (error) {
-    console.error('Error in callOpenAI:', error);
+    console.error('Error in callGaiaNet:', error);
     throw new Error(error.message || error);
   }
 }
@@ -35,10 +35,10 @@ app.post('/ask', async (req, res) => {
   const { question } = req.body;
 
   try {
-    const answer = await callOpenAI(question);
+    const answer = await callGaiaNet(question);
     res.json({ answer });
   } catch (error) {
-    res.status(500).json({ error: 'Failed to get an answer from Gaia' });
+    res.status(500).json({ error: 'Failed to get an answer from GaiaNet' });
   }
 });
 
