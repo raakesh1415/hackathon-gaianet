@@ -13,78 +13,52 @@
     body {
       background-color: #00082f;
       height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       margin: 0;
+      display: flex;
+      flex-direction: column;
+      color: white;
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
     }
 
-    .text-light {
-      color: #9ca2ad !important;
+    header {
+      background-color: #00082f;
+      padding: 10px;
+      text-align: center;
     }
 
     .logo {
       max-width: 250px;
     }
 
-    .legal_logo {
-      position: absolute;
-      top: 40px;
-      left: 50%;
-      transform: translateX(-50%);
+    main {
+      flex-grow: 1;
+      overflow-y: auto;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding-bottom: 100px;
+      position: relative;
     }
 
-    .welcome {
-      position: absolute;
-      top: 100px;
-      left: 50%;
-      transform: translateX(-50%);
+    /* Hide scrollbar but keep functionality */
+    main::-webkit-scrollbar {
+      display: none;
     }
 
-    .ex {
-      color: white;
-    }
-
-    /* Icon styles */
-    .icon-bg {
-      background-color: #1E90FF;
-      /* DodgerBlue */
-      padding: 15px;
-      border-radius: 50%;
-      display: inline-block;
-      margin-bottom: 10px;
-    }
-
-    .fa-icon {
-      font-size: 2.0rem;
-      /* Adjust this for bigger icons */
-      color: white;
-    }
-
-    /* Customized text box */
-    .custom-box {
-      background-color: #262c45;
-      /* Grey background */
-      color: white;
-      /* White text */
-      padding: 10px;
-      /* Padding inside the box */
-      border-radius: 10px;
-      /* Rounded corners */
-      margin-top: 20px;
-      /* Add some margin on top */
+    main {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
 
     .conversation-container {
-      max-height: 500px; /* Set the maximum height */
-      overflow-y: auto;
       max-width: 1000px;
       width: 100%;
-      margin: 20px auto;
-      margin-top: -50px;
+      margin: 20px;
       display: flex;
       flex-direction: column;
-      scroll-snap-type: y mandatory;
+      position: relative;
+      z-index: 1;
     }
 
     .question-box,
@@ -98,20 +72,18 @@
       max-width: 600px;
       display: inline-block;
       word-wrap: break-word;
+      position: relative;
     }
 
     .question-box {
       align-self: flex-end;
       margin-left: auto;
       background-color: #1E90FF;
-      color: white;
-      scroll-snap-align: end;
     }
 
     .answer-box {
       align-self: flex-start;
       margin-right: auto;
-      scroll-snap-align: end;
     }
 
     .question-box p,
@@ -119,37 +91,62 @@
       margin: 0;
     }
 
+    .answer-box ul {
+      padding-left: 20px;
+      margin-top: 10px;
+      list-style-type: disc;
+    }
 
+    .answer-box ul li {
+      margin-bottom: 5px;
+    }
 
-    /* Search bar styles */
+    /* Adding timestamps */
+    .timestamp {
+      font-size: 0.8rem;
+      color: #deeefa;
+      margin-top: 8px;
+      text-align: right;
+    }
 
+    /* Icons for the user question */
+    .user-icon {
+      position: absolute;
+      left: -40px;
+      top: 0;
+    }
 
-    .search-bar {
+    .question-box::before {
+      content: "\f007"; /* FontAwesome user icon */
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      color: #1E90FF;
+      position: absolute;
+      left: -35px;
+      top: 0;
+    }
+
+    .answer-box::before {
+      content: "\f2db"; /* FontAwesome chat icon */
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      color: #1E90FF;
+      position: absolute;
+      left: -35px;
+      top: 0;
+    }
+
+    footer {
+      background-color: #00082f;
+      padding: 20px;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100%;
-    }
-
-    .search-container {
       position: fixed;
-      /* Fixes the position to the viewport */
       bottom: 0;
-      /* Aligns to the bottom */
       left: 0;
-      /* Aligns to the left */
-      width: 100%;
-      /* Full width */
-      background-color: #00082f;
-      /* Background color */
-      padding: 20px 0;
-      /* Padding for the container */
-      display: flex;
-      /* Enables flexbox */
-      justify-content: center;
-      /* Centers content horizontally */
-      z-index: 1000;
-      /* Ensures it stays on top of other elements */
+      right: 0;
+      z-index: 2;
     }
 
     .search-input {
@@ -157,7 +154,7 @@
       border: none;
       padding: 10px 15px;
       border-radius: 30px;
-      width: 400px;
+      width: 600px;
       color: #9ca2ad;
       font-size: 1rem;
       outline: none;
@@ -170,261 +167,154 @@
     .search-btn {
       background-color: #1E90FF;
       border: none;
-      padding: 8px;
-      /* margin-left: -50px; */
-      border-radius: 50%;
+      padding: 10px 20px;
+      border-radius: 50px;
       cursor: pointer;
+      margin-left: 10px;
     }
 
     .search-btn i {
       color: white;
     }
 
-    /* .answer-container {
-      background-color: #262c45;
-      padding: 20px;
-      border-radius: 10px;4+
-      width: 100%;
-      max-width: 600px;
-      color: white;
-      margin: 20px auto;
-      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    /* Hover effect */
+    .answer-box:hover,
+    .question-box:hover {
+      box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
     }
 
-    #answer {
-      text-align: center;
-      font-size: 1.2rem;
-    } */
+    .answer-box p {
+      margin-top: 10px; /* Add space above paragraphs */
+    }
+
+    .answer-box ul {
+      margin-top: 10px; /* Add space above lists */
+    }
+
+    .answer-box ul li {
+      margin-top: 5px; /* Space between list items */
+    }
   </style>
 </head>
 
 <body>
-  <div class="container">
-    <!-- Grid Structure for Logo and Form -->
-    <div class="row">
-      <!-- Logo Section -->
-      <div class="col-12 d-flex justify-content-center">
-        <div class="legal_logo">
-          <img src="Screenshot_2024-10-13_121447-removebg-preview.png" alt="Legal Assistant Logo" class="logo img-fluid">
-        </div>
-      </div>
-    </div>
+  <!-- Header Section (Logo) -->
+  <header>
+    <img src="Legal Assistant.png" alt="Legal Assistant Logo" class="logo">
+  </header>
 
-    <div class="Temporary" id="Temp">
-    <div class="row">
-      <!-- Logo Section -->
-      <div class="col-12 d-flex justify-content-center">
-        <div class="welcome">
-          <h1 class="m-10 text-white">Welcome to Legal Assistant</h1>
-        </div>
-      </div>
-    </div>
-      <!-- Registration Form Section -->
-      <div class="row d-flex justify-content-center">
-        <div class="col-4 text-center ex raised">
-          <span class="icon-bg">
-            <i class="fa-regular fa-lightbulb fa-icon"></i>
-          </span>
-          <h3>Examples</h3>
-        </div>
-        <div class="col-4 text-center cap ex raised">
-          <span class="icon-bg">
-            <i class="fa-solid fa-bolt fa-icon"></i>
-          </span>
-          <h3>Capabilities</h3>
-        </div>
-        <div class="col-4 text-center ex raised">
-          <span class="icon-bg">
-            <i class="fa-solid fa-triangle-exclamation fa-icon"></i>
-          </span>
-          <h3>Limitations</h3>
-        </div>
-      </div>
-
-      <!-- Example text with customized background and text color -->
-      <div class="row d-flex justify-content-center">
-        <div class="col-4 text-center">
-          <div class="custom-box">
-            <h5>"Explain about the laws in Malaysia in simple terms"</h5>
-          </div>
-        </div>
-        <div class="col-4 text-center">
-          <div class="custom-box">
-            <h5>"Explain about the laws in Malaysia in simple terms"</h5>
-          </div>
-        </div>
-        <div class="col-4 text-center">
-          <div class="custom-box">
-            <h5>"Explain about the laws in Malaysia in simple terms"</h5>
-          </div>
-        </div>
-      </div>
-
-      <!-- Example text with customized background and text color -->
-      <div class="row d-flex justify-content-center">
-        <div class="col-4 text-center">
-          <div class="custom-box">
-            <h5>"Explain about the laws in Malaysia in simple terms"</h5>
-          </div>
-        </div>
-        <div class="col-4 text-center">
-          <div class="custom-box">
-            <h5>"Explain about the laws in Malaysia in simple terms"</h5>
-          </div>
-        </div>
-        <div class="col-4 text-center">
-          <div class="custom-box">
-            <h5>"Explain about the laws in Malaysia in simple terms"</h5>
-          </div>
-        </div>
-      </div>
-
-      Example text with customized background and text color
-      <div class="row d-flex justify-content-center">
-        <div class="col-4 text-center">
-          <div class="custom-box">
-            <h5>"Explain about the laws in Malaysia in simple terms"</h5>
-          </div>
-        </div>
-        <div class="col-4 text-center">
-          <div class="custom-box">
-            <h5>"Explain about the laws in Malaysia in simple terms"</h5>
-          </div>
-        </div>
-        <div class="col-4 text-center">
-          <div class="custom-box">
-            <h5>"Explain about the laws in Malaysia in simple terms"</h5>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- <div class="answer-container">
-      <h2 class="text-white">Answer</h2>
-      <p id="answer">Waiting for answer...</p>
-    </div> -->
-
+  <!-- Main Section (Conversation) -->
+  <main>
     <div class="conversation-container" id="conversationContainer">
       <!-- Questions and Answers will be appended here -->
     </div>
+  </main>
 
+  <!-- Footer Section (Search Bar) -->
+  <footer>
+    <input type="text" id="question" class="search-input" placeholder="Type your question here...">
+    <button type="submit" class="search-btn" id="submitBtn">
+      <i class="fa-solid fa-paper-plane"></i>
+    </button>
+  </footer>
 
-    <div class="row search-container" style="width: 100%; background-color: #00082f;">
-      <div class="col-12 justify-content-center">
-        <div class="search-bar">
-          <input type="text" id="question" class="search-input" placeholder="search for anything">
-          <button type="submit" class="search-btn" id="submitQuestion">
-            <i class="fa-solid fa-paper-plane"></i>
-          </button>
-        </div>
-      </div>
-    </div>
+  <script>
+    document.getElementById('submitBtn').addEventListener('click', async function (event) {
+      event.preventDefault(); // Prevent page reload
+      const question = document.getElementById('question').value.trim(); // Get the question from the input
 
-
-
-  </div>
-</body>
-
-<!-- <script>
-  document.getElementById('submitBtn').addEventListener('click', async function(event) {
-    event.preventDefault(); // Prevent page reload
-    const question = document.getElementById('question').value; // Get the question from the input
-
-    try {
-      const response = await fetch('http://localhost:4000/ask', { // Sending the request to Node.js
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          question: question
-        }) // Send question to the server
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch the answer');
+      if (!question) {
+        alert('Please type a question'); // Alert if input is empty
+        return;
       }
 
-      const result = await response.json(); // Parse the JSON response from the server
-      document.getElementById('answer').textContent = result.answer; // Display the answer
-    } catch (error) {
-      console.error('Error fetching answer:', error);
-      document.getElementById('answer').textContent = 'Error fetching answer: ' + error.message;
-    }
-  });
-</script>
- -->
+      const conversationContainer = document.getElementById('conversationContainer');
 
-</html>
+      // Create new question box element
+      const questionBox = document.createElement('div');
+      questionBox.className = 'question-box';
+      const questionText = document.createElement('p');
+      questionText.textContent = question;
+      questionBox.appendChild(questionText);
 
+      // Add timestamp for the question
+      const questionTimestamp = document.createElement('div');
+      questionTimestamp.className = 'timestamp';
+      questionTimestamp.textContent = new Date().toLocaleTimeString();
+      questionBox.appendChild(questionTimestamp);
 
-<script>
-  document.getElementById('submitQuestion').addEventListener('click', async function(event) {
+      conversationContainer.appendChild(questionBox); // Append question to conversation container
 
-    const disappearElements = document.querySelectorAll('.Temporary'); // Ensure matching class
-    // Loop through each element and hide it
-    disappearElements.forEach(function(element) {
-      element.style.display = 'none'; // Hide the element
+      // Clear input after submission
+      document.getElementById('question').value = '';
+
+      try {
+        const response = await fetch('http://localhost:4000/ask', { // Sending the request to Node.js
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            question: question
+          }) // Send question to the server
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch the answer');
+        }
+
+        const result = await response.json(); // Parse the JSON response from the server
+
+        // Create new answer box element
+        const answerBox = document.createElement('div');
+        answerBox.className = 'answer-box';
+
+        // Check if the result contains formatted content like paragraphs or lists
+        if (Array.isArray(result.answer)) {
+          // If the response is an array, assume it's a list of answers or items (e.g., legal codes)
+          const list = document.createElement('ul'); // Create an unordered list
+          result.answer.forEach((item) => {
+            const listItem = document.createElement('li');
+            listItem.innerHTML = item.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); // Convert **text** to <strong>text</strong>
+            list.appendChild(listItem); // Append each item to the list
+          });
+          answerBox.appendChild(list); // Append the list to the answer box
+        } else if (typeof result.answer === 'string') {
+          // If it's a single string, handle it as regular text or paragraphs
+          const paragraphs = result.answer.split('\n');
+          paragraphs.forEach((paragraph) => {
+            const answerParagraph = document.createElement('p');
+            answerParagraph.innerHTML = paragraph.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); // Convert **text** to <strong>text</strong>
+            answerBox.appendChild(answerParagraph);
+          });
+        }
+
+        // Add timestamp for the answer
+        const answerTimestamp = document.createElement('div');
+        answerTimestamp.className = 'timestamp';
+        answerTimestamp.textContent = new Date().toLocaleTimeString();
+        answerBox.appendChild(answerTimestamp);
+
+        conversationContainer.appendChild(answerBox); // Append answer to conversation container
+      } catch (error) {
+        console.error('Error fetching answer:', error);
+
+        // Display error in the answer box
+        const answerBox = document.createElement('div');
+        answerBox.className = 'answer-box';
+        const answerText = document.createElement('p');
+        answerText.textContent = 'Error fetching answer: ' + error.message;
+        answerBox.appendChild(answerText);
+        conversationContainer.appendChild(answerBox); // Append error answer to conversation container
+      }
+
+      // Scroll to the bottom of the conversation container with smooth scrolling
+      conversationContainer.scrollTo({
+        top: conversationContainer.scrollHeight,
+        behavior: 'smooth'
+      });
     });
-
-    event.preventDefault(); // Prevent page reload
-    const question = document.getElementById('question').value.trim(); // Get the question from the input
-
-    if (!question) {
-      alert('Please type a question'); // Alert if input is empty
-      return;
-    }
-
-    const conversationContainer = document.getElementById('conversationContainer');
-
-    // Create new question box element
-    const questionBox = document.createElement('div');
-    questionBox.className = 'question-box';
-    const questionText = document.createElement('p');
-    questionText.textContent = question;
-    questionBox.appendChild(questionText);
-    conversationContainer.appendChild(questionBox); // Append question to conversation container
-
-    // Clear input after submission
-    document.getElementById('question').value = '';
-
-    try {
-      const response = await fetch('http://localhost:4000/ask', { // Sending the request to Node.js
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          question: question
-        }) // Send question to the server
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch the answer');
-      }
-
-      const result = await response.json(); // Parse the JSON response from the server
-
-      // Create new answer box element
-      const answerBox = document.createElement('div');
-      answerBox.className = 'answer-box';
-      const answerText = document.createElement('p');
-      answerText.textContent = result.answer;
-      answerBox.appendChild(answerText);
-      conversationContainer.appendChild(answerBox); // Append answer to conversation container
-    } catch (error) {
-      console.error('Error fetching answer:', error);
-
-      // Display error in the answer box
-      const answerBox = document.createElement('div');
-      answerBox.className = 'answer-box';
-      const answerText = document.createElement('p');
-      answerText.textContent = 'Error fetching answer: ' + error.message;
-      answerBox.appendChild(answerText);
-      conversationContainer.appendChild(answerBox); // Append error answer to conversation container
-    }
-  });
-</script>
+  </script>
 </body>
 
 </html>

@@ -79,7 +79,7 @@
   }
 
   .legal_logo img {
-    width: 250px; /* Increased size */
+    width: 250px; 
     margin-bottom: 20px;
   }
 
@@ -107,7 +107,7 @@
       <!-- Logo Section -->
       <div class="col-12 d-flex justify-content-center">
         <div class="legal_logo">
-          <img src="Screenshot_2024-10-13_121447-removebg-preview.png" alt="Legal Assistant Logo" class="logo img-fluid">
+          <img src="Legal Assistant.png" alt="Legal Assistant Logo" class="logo img-fluid">
         </div>
       </div>
     </div>
