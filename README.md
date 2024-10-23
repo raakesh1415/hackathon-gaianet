@@ -34,7 +34,7 @@ Before getting started, ensure the following are installed on your system:
 
 ```
 {
-  "address": "YOUR NODE ID",
+  "address": "YOUR_NODE_ID",
   "chat": "https://huggingface.co/second-state/Llama-3.2-3B-Instruct-GGUF/resolve/main/Llama-3.2-3B-Instruct-Q5_K_M.gguf",
   "chat_batch_size": "16",
   "chat_ctx_size": "16384",
@@ -53,8 +53,8 @@ Before getting started, ensure the following are installed on your system:
   "rag_policy": "retrieve-legal-precedents",
   "rag_prompt": "You are a legal assistant. Use the information in the following context to provide accurate and relevant legal assistance to the user. Ensure your advice is clear and easy to understand.\n----------------\n",
   "reverse_prompt": "",
-  "server_health_url": "https://pulse.gaianet.ai/node-health/YOUR NODE ID",
-  "server_info_url": "https://pulse.gaianet.ai/node-info/Y",
+  "server_health_url": "https://pulse.gaianet.ai/node-health/YOUR_NODE_ID",
+  "server_info_url": "https://pulse.gaianet.ai/node-info/YOUR_NODE_ID",
   "snapshot": "",
   "system_prompt": "You are a legal assistant. Please provide accurate and relevant legal assistance to the user."
 }
