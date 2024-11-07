@@ -5,9 +5,9 @@ const OpenAI = require('openai'); // Make sure you're using the correct OpenAI l
 const app = express();
 app.use(express.json());
 app.use(cors());
-
 const client = new OpenAI({
-  baseURL: 'https://pastor.gaianet.network/v1',  // Update to the GaiaNet node's base URL
+  // baseURL: 'https://muadao.gaianet.network/v1',  // Update to the GaiaNet node's base URL
+  baseURL: 'https://llama.us.gaianet.network/v1',
   apiKey: 'gaia'  // GaiaNet doesn't need an API key, you can leave it blank if the system allows.
 });
 

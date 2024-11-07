@@ -121,7 +121,11 @@
               <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
               <input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
             </div>
+            <!-- Add Register link below the Login button -->
             <button type="submit" class="btn btn-register">Login</button>
+              <p class="text-light text-center mt-3">Don't have an account? 
+                <a href="register.php" class=" text-white">Register here</a>
+              </p>
           </form>
         </div>
       </div>
