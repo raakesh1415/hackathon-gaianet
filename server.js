@@ -1,18 +1,34 @@
 const express = require('express');
 const cors = require('cors');
-const OpenAI = require('openai'); // Make sure you're using the correct OpenAI library or GaiaNet's specific client SDK
+const OpenAI = require('openai'); // Ensure the correct OpenAI SDK or GaiaNet's specific client SDK is used
 
 const app = express();
 app.use(express.json());
 app.use(cors());
-const client = new OpenAI({
-  // baseURL: 'https://muadao.gaianet.network/v1',  // Update to the GaiaNet node's base URL
-  baseURL: 'https://llama.us.gaianet.network/v1',
-  apiKey: 'gaia'  // GaiaNet doesn't need an API key, you can leave it blank if the system allows.
-});
 
-// Function to call the GaiaNet node
+// Define an array of GaiaNet nodes (this could be expanded or dynamically loaded)
+const gaiaNodes = [
+  { baseURL: 'https://llama.us.gaianet.network/v1', name: 'Node 1' },
+  { baseURL: 'https://phi.us.gaianet.network/v1', name: 'Node 2' },
+  { baseURL: 'https://yumchat.us.gaianet.network/v1', name: 'Node 3' },
+  { baseURL: 'https://consensus.us.gaianet.network/v1', name: 'Node 4' }
+];
+
+// Helper function to randomly select a node
+function getRandomNode() {
+  const randomIndex = Math.floor(Math.random() * gaiaNodes.length);
+  return gaiaNodes[randomIndex];
+}
+
+// Function to call GaiaNet node
 async function callGaiaNet(question) {
+  // Select a random node
+  const node = getRandomNode();
+  const client = new OpenAI({
+    baseURL: node.baseURL,
+    apiKey: ''  // GaiaNet doesn't need an API key, you can leave it blank if the system allows
+  });
+
   try {
     const response = await client.chat.completions.create({
       model: "Llama-3-8B-Instruct",  // Update to the correct model
@@ -25,7 +41,7 @@ async function callGaiaNet(question) {
     });
     return response.choices[0].message.content;  // Return the generated response
   } catch (error) {
-    console.error('Error in callGaiaNet:', error);
+    console.error('Error in callGaiaNet on node', node.name, ':', error);
     throw new Error(error.message || error);
   }
 }
@@ -38,7 +54,14 @@ app.post('/ask', async (req, res) => {
     const answer = await callGaiaNet(question);
     res.json({ answer });
   } catch (error) {
-    res.status(500).json({ error: 'Failed to get an answer from GaiaNet' });
+    // Retry on failure: Try another node in case of an error
+    try {
+      const answer = await callGaiaNet(question);
+      res.json({ answer });
+    } catch (retryError) {
+      console.error('Retry failed:', retryError);
+      res.status(500).json({ error: 'Failed to get an answer from GaiaNet' });
+    }
   }
 });
 
@@ -46,3 +69,5 @@ app.post('/ask', async (req, res) => {
 app.listen(4000, () => {
   console.log('Server running on port 4000');
 });
+
+
