@@ -12,6 +12,7 @@ const gaiaNodes = [
   { baseURL: 'https://phi.us.gaianet.network/v1', name: 'Node 2' },
   { baseURL: 'https://yumchat.us.gaianet.network/v1', name: 'Node 3' },
   { baseURL: 'https://consensus.us.gaianet.network/v1', name: 'Node 4' }
+  // { baseURL: 'https://0x39faff7a0809c1431ec8c5888ba6027ed3093e8e.us.gaianet.network/v1', name: 'Node 5' }
 ];
 
 // Helper function to randomly select a node
